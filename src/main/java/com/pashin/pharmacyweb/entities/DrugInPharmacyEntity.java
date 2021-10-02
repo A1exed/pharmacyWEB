@@ -2,6 +2,7 @@ package com.pashin.pharmacyweb.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 @Table(name = "drug_in_pharmacy", catalog = "pharmacy", schema = "public")
@@ -99,6 +100,19 @@ public class DrugInPharmacyEntity implements Serializable {
                     "pharmacyID=" + pharmacyID +
                     ", drugID=" + drugID +
                     '}';
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof DrugInPharmacyKey)) return false;
+            DrugInPharmacyKey that = (DrugInPharmacyKey) o;
+            return getPharmacyID().equals(that.getPharmacyID()) && getDrugID().equals(that.getDrugID());
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(getPharmacyID(), getDrugID());
         }
     }
 }
