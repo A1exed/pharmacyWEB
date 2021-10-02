@@ -1,4 +1,4 @@
-package com.pashin.pharmacyweb.entities;
+package com.pashin.pharmacyweb.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 @SequenceGenerator(name = "network_id_seq", sequenceName = "network_network_id_seq", allocationSize = 1)
 @Entity
 @Table(name = "network", catalog = "pharmacy", schema = "public")
-public class NetworkEntity implements Serializable {
+public class NetworkModel implements Serializable {
 
     @Id
     @GeneratedValue(generator = "network_id_seq", strategy = GenerationType.SEQUENCE)
@@ -26,18 +26,18 @@ public class NetworkEntity implements Serializable {
     private String owner;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "networkID")
-    private List<PharmacyEntity> pharmacyList;
+    private List<PharmacyModel> pharmacyList;
 
-    public NetworkEntity() {
+    public NetworkModel() {
     }
 
-    public NetworkEntity(String networkName, String phoneNumber, String owner) {
+    public NetworkModel(String networkName, String phoneNumber, String owner) {
         this.networkName = networkName;
         this.phoneNumber = phoneNumber;
         this.owner = owner;
     }
 
-    public NetworkEntity(String networkName, String phoneNumber, String owner, PharmacyEntity...pharmacies) {
+    public NetworkModel(String networkName, String phoneNumber, String owner, PharmacyModel...pharmacies) {
         this.networkName = networkName;
         this.phoneNumber = phoneNumber;
         this.owner = owner;
@@ -77,17 +77,17 @@ public class NetworkEntity implements Serializable {
         this.owner = owner;
     }
 
-    public List<PharmacyEntity> getPharmacyList() {
+    public List<PharmacyModel> getPharmacyList() {
         return pharmacyList;
     }
 
-    public void setPharmacyList(List<PharmacyEntity> pharmacyList) {
+    public void setPharmacyList(List<PharmacyModel> pharmacyList) {
         this.pharmacyList = pharmacyList;
     }
 
     @Override
     public String toString() {
-        return "NetworkEntity{" +
+        return "NetworkModel{" +
                 "networkID=" + networkID +
                 ", networkName='" + networkName + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +

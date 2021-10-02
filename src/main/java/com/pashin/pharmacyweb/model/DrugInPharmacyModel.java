@@ -1,4 +1,4 @@
-package com.pashin.pharmacyweb.entities;
+package com.pashin.pharmacyweb.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -6,44 +6,44 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "drug_in_pharmacy", catalog = "pharmacy", schema = "public")
-@IdClass(DrugInPharmacyEntity.DrugInPharmacyKey.class)
-public class DrugInPharmacyEntity implements Serializable {
+@IdClass(DrugInPharmacyModel.DrugInPharmacyKey.class)
+public class DrugInPharmacyModel implements Serializable {
 
     @Id
     @ManyToOne
     @JoinColumn(name = "pharmacy_id", nullable = false)
-    private PharmacyEntity pharmacyID;
+    private PharmacyModel pharmacyID;
 
     @Id
     @ManyToOne
     @JoinColumn(name = "drug_id", nullable = false)
-    private DrugEntity drugID;
+    private DrugModel drugID;
 
     @Column(name = "quantity", nullable = false)
     private Integer quantity;
 
-    public DrugInPharmacyEntity() {
+    public DrugInPharmacyModel() {
     }
 
-    public DrugInPharmacyEntity(PharmacyEntity pharmacyID, DrugEntity drugID, Integer quantity) {
+    public DrugInPharmacyModel(PharmacyModel pharmacyID, DrugModel drugID, Integer quantity) {
         this.pharmacyID = pharmacyID;
         this.drugID = drugID;
         this.quantity = quantity;
     }
 
-    public PharmacyEntity getPharmacyID() {
+    public PharmacyModel getPharmacyID() {
         return pharmacyID;
     }
 
-    public void setPharmacyID(PharmacyEntity pharmacyID) {
+    public void setPharmacyID(PharmacyModel pharmacyID) {
         this.pharmacyID = pharmacyID;
     }
 
-    public DrugEntity getDrugID() {
+    public DrugModel getDrugID() {
         return drugID;
     }
 
-    public void setDrugID(DrugEntity drugID) {
+    public void setDrugID(DrugModel drugID) {
         this.drugID = drugID;
     }
 
@@ -57,14 +57,14 @@ public class DrugInPharmacyEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "DrugInPharmacyEntity{" +
+        return "DrugInPharmacyModel{" +
                 "pharmacyID=" + pharmacyID +
                 ", drugID=" + drugID +
                 ", quantity=" + quantity +
                 '}';
     }
 
-    public static class DrugInPharmacyKey implements Serializable {
+    public class DrugInPharmacyKey implements Serializable {
 
         private Long pharmacyID;
 

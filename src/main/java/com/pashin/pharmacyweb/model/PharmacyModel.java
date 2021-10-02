@@ -1,4 +1,4 @@
-package com.pashin.pharmacyweb.entities;
+package com.pashin.pharmacyweb.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -7,7 +7,7 @@ import java.util.List;
 @SequenceGenerator(name = "pharmacy_id_seq", sequenceName = "pharmacy_pharmacy_id_seq", allocationSize = 1)
 @Entity
 @Table(name = "pharmacy", catalog = "pharmacy", schema = "public")
-public class PharmacyEntity implements Serializable {
+public class PharmacyModel implements Serializable {
 
     @Id
     @GeneratedValue(generator = "pharmacy_id_seq", strategy = GenerationType.SEQUENCE)
@@ -25,24 +25,24 @@ public class PharmacyEntity implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "network_id")
-    private NetworkEntity networkID;
+    private NetworkModel networkID;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pharmacyID")
-    private List<EmployeeEntity> employeeList;
+    private List<EmployeeModel> employeeList;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pharmacyID")
-    private List<DrugInPharmacyEntity> drugInPharmacyList;
+    private List<DrugInPharmacyModel> drugInPharmacyList;
 
-    public PharmacyEntity() {
+    public PharmacyModel() {
     }
 
-    public PharmacyEntity(String address, Double rating, String phoneNumber) {
+    public PharmacyModel(String address, Double rating, String phoneNumber) {
         this.address = address;
         this.rating = rating;
         this.phoneNumber = phoneNumber;
     }
 
-    public PharmacyEntity(String address, Double rating, String phoneNumber, NetworkEntity networkID) {
+    public PharmacyModel(String address, Double rating, String phoneNumber, NetworkModel networkID) {
         this.address = address;
         this.rating = rating;
         this.phoneNumber = phoneNumber;
@@ -81,33 +81,33 @@ public class PharmacyEntity implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public NetworkEntity getNetworkID() {
+    public NetworkModel getNetworkID() {
         return networkID;
     }
 
-    public void setNetworkID(NetworkEntity networkID) {
+    public void setNetworkID(NetworkModel networkID) {
         this.networkID = networkID;
     }
 
-    public List<EmployeeEntity> getEmployeeList() {
+    public List<EmployeeModel> getEmployeeList() {
         return employeeList;
     }
 
-    public void setEmployeeList(List<EmployeeEntity> employeeList) {
+    public void setEmployeeList(List<EmployeeModel> employeeList) {
         this.employeeList = employeeList;
     }
 
-    public List<DrugInPharmacyEntity> getDrugInPharmacyList() {
+    public List<DrugInPharmacyModel> getDrugInPharmacyList() {
         return drugInPharmacyList;
     }
 
-    public void setDrugInPharmacyList(List<DrugInPharmacyEntity> drugInPharmacyList) {
+    public void setDrugInPharmacyList(List<DrugInPharmacyModel> drugInPharmacyList) {
         this.drugInPharmacyList = drugInPharmacyList;
     }
 
     @Override
     public String toString() {
-        return "PharmacyEntity{" +
+        return "PharmacyModel{" +
                 "pharmacyID=" + pharmacyID +
                 ", address='" + address + '\'' +
                 ", rating=" + rating +

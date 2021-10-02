@@ -1,7 +1,7 @@
-package com.pashin.pharmacyweb.services.dbservices;
+package com.pashin.pharmacyweb.service.dbservices;
 
-import com.pashin.pharmacyweb.entities.DrugInPharmacyEntity;
-import com.pashin.pharmacyweb.repositories.DrugInPharmacyRepository;
+import com.pashin.pharmacyweb.model.DrugInPharmacyModel;
+import com.pashin.pharmacyweb.repository.DrugInPharmacyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,23 +13,23 @@ public class DrugInPharmacyService {
     @Autowired
     private DrugInPharmacyRepository drugInPharmacyRepository;
 
-    public DrugInPharmacyEntity add(DrugInPharmacyEntity element) {
+    public DrugInPharmacyModel add(DrugInPharmacyModel element) {
         return drugInPharmacyRepository.saveAndFlush(element);
     }
 
-    public void deleteByID(DrugInPharmacyEntity.DrugInPharmacyKey ID) {
+    public void deleteByID(DrugInPharmacyModel.DrugInPharmacyKey ID) {
         drugInPharmacyRepository.deleteById(ID);
     }
 
-    public DrugInPharmacyEntity editElement(DrugInPharmacyEntity element) {
+    public DrugInPharmacyModel editElement(DrugInPharmacyModel element) {
         return drugInPharmacyRepository.saveAndFlush(element);
     }
 
-    public DrugInPharmacyEntity getByID(DrugInPharmacyEntity.DrugInPharmacyKey ID) {
+    public DrugInPharmacyModel getByID(DrugInPharmacyModel.DrugInPharmacyKey ID) {
         return drugInPharmacyRepository.getById(ID);
     }
 
-    public List<DrugInPharmacyEntity> getAll() {
+    public List<DrugInPharmacyModel> getAll() {
         return drugInPharmacyRepository.findAll();
     }
 }

@@ -1,4 +1,4 @@
-package com.pashin.pharmacyweb.services;
+package com.pashin.pharmacyweb.service;
 
 import java.util.List;
 

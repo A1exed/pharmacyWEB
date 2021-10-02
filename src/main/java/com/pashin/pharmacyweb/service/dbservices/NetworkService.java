@@ -1,21 +1,21 @@
-package com.pashin.pharmacyweb.services.dbservices;
+package com.pashin.pharmacyweb.service.dbservices;
 
-import com.pashin.pharmacyweb.entities.NetworkEntity;
-import com.pashin.pharmacyweb.repositories.NetworkRepository;
-import com.pashin.pharmacyweb.services.IDBService;
+import com.pashin.pharmacyweb.model.NetworkModel;
+import com.pashin.pharmacyweb.repository.NetworkRepository;
+import com.pashin.pharmacyweb.service.IDBService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class NetworkService implements IDBService<NetworkEntity> {
+public class NetworkService implements IDBService<NetworkModel> {
 
     @Autowired
     private NetworkRepository networkRepository;
 
     @Override
-    public NetworkEntity add(NetworkEntity element) {
+    public NetworkModel add(NetworkModel element) {
         return networkRepository.saveAndFlush(element);
     }
 
@@ -25,17 +25,17 @@ public class NetworkService implements IDBService<NetworkEntity> {
     }
 
     @Override
-    public NetworkEntity editElement(NetworkEntity element) {
+    public NetworkModel editElement(NetworkModel element) {
         return networkRepository.saveAndFlush(element);
     }
 
     @Override
-    public NetworkEntity getByID(long ID) {
+    public NetworkModel getByID(long ID) {
         return networkRepository.getById(ID);
     }
 
     @Override
-    public List<NetworkEntity> getAll() {
+    public List<NetworkModel> getAll() {
         return networkRepository.findAll();
     }
 }

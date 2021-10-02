@@ -1,4 +1,4 @@
-package com.pashin.pharmacyweb.entities;
+package com.pashin.pharmacyweb.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 @SequenceGenerator(name = "drug_id_seq", sequenceName = "drug_drug_id_seq", allocationSize = 1)
 @Entity
 @Table(name = "drug", catalog = "pharmacy", schema = "public")
-public class DrugEntity implements Serializable {
+public class DrugModel implements Serializable {
 
     @Id
     @GeneratedValue(generator = "drug_id_seq", strategy = GenerationType.SEQUENCE)
@@ -26,18 +26,18 @@ public class DrugEntity implements Serializable {
     private String manufacturerName;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "drugID")
-    private List<DrugInPharmacyEntity> drugInPharmacyList;
+    private List<DrugInPharmacyModel> drugInPharmacyList;
 
-    public DrugEntity() {
+    public DrugModel() {
     }
 
-    public DrugEntity(String drugName, String form, String manufacturerName) {
+    public DrugModel(String drugName, String form, String manufacturerName) {
         this.drugName = drugName;
         this.form = form;
         this.manufacturerName = manufacturerName;
     }
 
-    public DrugEntity(String drugName, String form, String manufacturerName, DrugInPharmacyEntity...drugInPharmacy) {
+    public DrugModel(String drugName, String form, String manufacturerName, DrugInPharmacyModel...drugInPharmacy) {
         this.drugName = drugName;
         this.form = form;
         this.manufacturerName = manufacturerName;
@@ -77,17 +77,17 @@ public class DrugEntity implements Serializable {
         this.manufacturerName = manufacturerName;
     }
 
-    public List<DrugInPharmacyEntity> getDrugInPharmacyList() {
+    public List<DrugInPharmacyModel> getDrugInPharmacyList() {
         return drugInPharmacyList;
     }
 
-    public void setDrugInPharmacyList(List<DrugInPharmacyEntity> drugInPharmacyList) {
+    public void setDrugInPharmacyList(List<DrugInPharmacyModel> drugInPharmacyList) {
         this.drugInPharmacyList = drugInPharmacyList;
     }
 
     @Override
     public String toString() {
-        return "DrugEntity{" +
+        return "DrugModel{" +
                 "drugID=" + drugID +
                 ", drugName='" + drugName + '\'' +
                 ", form='" + form + '\'' +

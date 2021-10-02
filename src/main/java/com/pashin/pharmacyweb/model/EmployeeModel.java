@@ -1,4 +1,4 @@
-package com.pashin.pharmacyweb.entities;
+package com.pashin.pharmacyweb.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -6,7 +6,7 @@ import java.io.Serializable;
 @SequenceGenerator(name = "employee_id_seq", sequenceName = "employee_employee_id_seq", allocationSize = 1)
 @Entity
 @Table(name = "employee", catalog = "pharmacy", schema = "public")
-public class EmployeeEntity implements Serializable {
+public class EmployeeModel implements Serializable {
 
     @Id
     @GeneratedValue(generator = "employee_id_seq", strategy = GenerationType.SEQUENCE)
@@ -24,18 +24,18 @@ public class EmployeeEntity implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "pharmacy_id")
-    private PharmacyEntity pharmacyID;
+    private PharmacyModel pharmacyID;
 
-    public EmployeeEntity() {
+    public EmployeeModel() {
     }
 
-    public EmployeeEntity(String employeeName, String position, String phoneNumber) {
+    public EmployeeModel(String employeeName, String position, String phoneNumber) {
         this.employeeName = employeeName;
         this.position = position;
         this.phoneNumber = phoneNumber;
     }
 
-    public EmployeeEntity(String employeeName, String position, String phoneNumber, PharmacyEntity pharmacyID) {
+    public EmployeeModel(String employeeName, String position, String phoneNumber, PharmacyModel pharmacyID) {
         this.employeeName = employeeName;
         this.position = position;
         this.phoneNumber = phoneNumber;
@@ -74,17 +74,17 @@ public class EmployeeEntity implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public PharmacyEntity getPharmacyID() {
+    public PharmacyModel getPharmacyID() {
         return pharmacyID;
     }
 
-    public void setPharmacyID(PharmacyEntity pharmacyID) {
+    public void setPharmacyID(PharmacyModel pharmacyID) {
         this.pharmacyID = pharmacyID;
     }
 
     @Override
     public String toString() {
-        return "EmployeeEntity{" +
+        return "EmployeeModel{" +
                 "employeeID=" + employeeID +
                 ", employeeName='" + employeeName + '\'' +
                 ", position='" + position + '\'' +

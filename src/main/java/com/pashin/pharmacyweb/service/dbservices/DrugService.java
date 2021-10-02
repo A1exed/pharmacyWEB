@@ -1,21 +1,21 @@
-package com.pashin.pharmacyweb.services.dbservices;
+package com.pashin.pharmacyweb.service.dbservices;
 
-import com.pashin.pharmacyweb.entities.DrugEntity;
-import com.pashin.pharmacyweb.repositories.DrugRepository;
-import com.pashin.pharmacyweb.services.IDBService;
+import com.pashin.pharmacyweb.model.DrugModel;
+import com.pashin.pharmacyweb.repository.DrugRepository;
+import com.pashin.pharmacyweb.service.IDBService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class DrugService implements IDBService<DrugEntity> {
+public class DrugService implements IDBService<DrugModel> {
 
     @Autowired
     private DrugRepository drugRepository;
 
     @Override
-    public DrugEntity add(DrugEntity element) {
+    public DrugModel add(DrugModel element) {
         return drugRepository.saveAndFlush(element);
     }
 
@@ -25,17 +25,17 @@ public class DrugService implements IDBService<DrugEntity> {
     }
 
     @Override
-    public DrugEntity editElement(DrugEntity element) {
+    public DrugModel editElement(DrugModel element) {
         return drugRepository.saveAndFlush(element);
     }
 
     @Override
-    public DrugEntity getByID(long ID) {
+    public DrugModel getByID(long ID) {
         return drugRepository.getById(ID);
     }
 
     @Override
-    public List<DrugEntity> getAll() {
+    public List<DrugModel> getAll() {
         return drugRepository.findAll();
     }
 }
