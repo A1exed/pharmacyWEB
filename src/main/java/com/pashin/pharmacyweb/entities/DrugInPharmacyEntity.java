@@ -18,12 +18,16 @@ public class DrugInPharmacyEntity implements Serializable {
     @JoinColumn(name = "drug_id", nullable = false)
     private DrugEntity drugID;
 
+    @Column(name = "quantity", nullable = false)
+    private Integer quantity;
+
     public DrugInPharmacyEntity() {
     }
 
-    public DrugInPharmacyEntity(PharmacyEntity pharmacyID, DrugEntity drugID) {
+    public DrugInPharmacyEntity(PharmacyEntity pharmacyID, DrugEntity drugID, Integer quantity) {
         this.pharmacyID = pharmacyID;
         this.drugID = drugID;
+        this.quantity = quantity;
     }
 
     public PharmacyEntity getPharmacyID() {
@@ -42,11 +46,20 @@ public class DrugInPharmacyEntity implements Serializable {
         this.drugID = drugID;
     }
 
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
     @Override
     public String toString() {
         return "DrugInPharmacyEntity{" +
                 "pharmacyID=" + pharmacyID +
                 ", drugID=" + drugID +
+                ", quantity=" + quantity +
                 '}';
     }
 
