@@ -1,6 +1,6 @@
 package com.pashin.pharmacyweb.controller;
 
-import com.pashin.pharmacyweb.service.dbservices.*;
+import com.pashin.pharmacyweb.service.db.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 

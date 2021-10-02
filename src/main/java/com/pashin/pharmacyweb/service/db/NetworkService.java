@@ -1,4 +1,4 @@
-package com.pashin.pharmacyweb.service.dbservices;
+package com.pashin.pharmacyweb.service.db;
 
 import com.pashin.pharmacyweb.model.NetworkModel;
 import com.pashin.pharmacyweb.repository.NetworkRepository;
