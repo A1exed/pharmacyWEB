@@ -1,5 +1,6 @@
 package com.pashin.pharmacyweb.controller;
 
+import com.pashin.pharmacyweb.dto.DrugInPharmacyDTO;
 import com.pashin.pharmacyweb.model.*;
 import com.pashin.pharmacyweb.service.db.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -30,37 +33,62 @@ public class DBController {
     @GetMapping("/getDrugInPharmacyByID")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public DrugInPharmacyModel getDrugInPharmacyByID(@RequestBody DrugInPharmacyModel.DrugInPharmacyKey drugInPharmacyID) {
-        return drugInPharmacyService.getByID(drugInPharmacyID);
+    public DrugInPharmacyDTO getDrugInPharmacyByID(@RequestParam Long drugID, @RequestParam Long pharmacyID) {
+        DrugInPharmacyModel model = drugInPharmacyService.getByID(new DrugInPharmacyModel.DrugInPharmacyKey(pharmacyID, drugID));
+        PharmacyModel pharmacyModel = model.getPharmacyID();
+        NetworkModel networkModel = pharmacyModel.getNetworkID();
+        DrugModel drugModel = model.getDrugID();
+        return new DrugInPharmacyDTO(pharmacyModel.getPharmacyID(), drugModel.getDrugID(), networkModel.getNetworkName(), pharmacyModel.getAddress(), drugModel.getDrugName(), drugModel.getForm(), drugModel.getManufacturerName(), model.getQuantity());
     }
 
     @GetMapping("/getDrugInPharmacyList")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public List<DrugInPharmacyModel> getDrugInPharmacyList() {
-        return drugInPharmacyService.getAll();
+    public List<DrugInPharmacyDTO> getDrugInPharmacyList() {
+        List<DrugInPharmacyModel> models = drugInPharmacyService.getAll();
+        List<DrugInPharmacyDTO> results = new ArrayList<>();
+        PharmacyModel pharmacyModel;
+        NetworkModel networkModel;
+        DrugModel drugModel;
+        for (DrugInPharmacyModel model : models) {
+            pharmacyModel = model.getPharmacyID();
+            networkModel = pharmacyModel.getNetworkID();
+            drugModel = model.getDrugID();
+            results.add(new DrugInPharmacyDTO(pharmacyModel.getPharmacyID(), drugModel.getDrugID(), networkModel.getNetworkName(), pharmacyModel.getAddress(), drugModel.getDrugName(), drugModel.getForm(), drugModel.getManufacturerName(), model.getQuantity()));
+        }
+        return results;
     }
 
     @GetMapping("/addDrugInPharmacy")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public DrugInPharmacyModel addDrugInPharmacy(@RequestBody DrugInPharmacyModel drugInPharmacy) {
-        return drugInPharmacyService.add(drugInPharmacy);
+    public DrugInPharmacyDTO addDrugInPharmacy(@RequestParam Long pharmacyID, @RequestParam Long drugID, @RequestParam Integer quantity) {
+        DrugInPharmacyModel model = drugInPharmacyService.add(new DrugInPharmacyModel(pharmacyService.getByID(pharmacyID), drugService.getByID(drugID), quantity));
+        PharmacyModel pharmacyModel = model.getPharmacyID();
+        NetworkModel networkModel = pharmacyModel.getNetworkID();
+        DrugModel drugModel = model.getDrugID();
+        return new DrugInPharmacyDTO(pharmacyModel.getPharmacyID(), drugModel.getDrugID(), networkModel.getNetworkName(), pharmacyModel.getAddress(), drugModel.getDrugName(), drugModel.getForm(), drugModel.getManufacturerName(), model.getQuantity());
     }
 
     @PostMapping("/deleteDrugInPharmacyByID")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteDrugInPharmacyByID(@RequestBody DrugInPharmacyModel.DrugInPharmacyKey drugInPharmacyID) {
-        drugInPharmacyService.deleteByID(drugInPharmacyID);
+    public void deleteDrugInPharmacyByID(@RequestParam Long pharmacyID, @RequestParam Long drugID) {
+        drugInPharmacyService.deleteByID(new DrugInPharmacyModel.DrugInPharmacyKey(pharmacyID, drugID));
     }
 
     @GetMapping("/editDrugInPharmacy")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public DrugInPharmacyModel editDrugInPharmacy(@RequestBody DrugInPharmacyModel drugInPharmacy) {
-        return drugInPharmacyService.editElement(drugInPharmacy);
+    public DrugInPharmacyDTO editDrugInPharmacy(@RequestParam Long pharmacyID, @RequestParam Long drugID, @RequestParam Integer quantity) {
+        DrugInPharmacyModel model = drugInPharmacyService.getByID(new DrugInPharmacyModel.DrugInPharmacyKey(pharmacyID, drugID));
+        model.setQuantity(quantity);
+        model = drugInPharmacyService.editElement(model);
+        PharmacyModel pharmacyModel = model.getPharmacyID();
+        NetworkModel networkModel = pharmacyModel.getNetworkID();
+        DrugModel drugModel = model.getDrugID();
+        return new DrugInPharmacyDTO(pharmacyModel.getPharmacyID(), drugModel.getDrugID(), networkModel.getNetworkName(), pharmacyModel.getAddress(), drugModel.getDrugName(), drugModel.getForm(), drugModel.getManufacturerName(), model.getQuantity());
     }
-
+//TODO: Доделать
     @GetMapping("/getDrugByID")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
@@ -98,6 +126,7 @@ public class DBController {
     @GetMapping("/getEmployeeByID")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
+    @Transactional
     public EmployeeModel getEmployeeByID(@RequestParam Long employeeID) {
         return employeeService.getByID(employeeID);
     }
