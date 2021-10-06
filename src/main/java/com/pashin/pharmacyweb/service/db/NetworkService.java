@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class NetworkService implements IDBService<NetworkModel> {
+public class NetworkService implements IDBService<NetworkModel, Long> {
 
     @Autowired
     private NetworkRepository networkRepository;
@@ -20,8 +20,8 @@ public class NetworkService implements IDBService<NetworkModel> {
     }
 
     @Override
-    public void deleteByID(long ID) {
-        networkRepository.deleteById(ID);
+    public void deleteByID(Long id) {
+        networkRepository.deleteById(id);
     }
 
     @Override
@@ -30,8 +30,8 @@ public class NetworkService implements IDBService<NetworkModel> {
     }
 
     @Override
-    public NetworkModel getByID(long ID) {
-        return networkRepository.getById(ID);
+    public NetworkModel getByID(Long id) {
+        return networkRepository.getById(id);
     }
 
     @Override

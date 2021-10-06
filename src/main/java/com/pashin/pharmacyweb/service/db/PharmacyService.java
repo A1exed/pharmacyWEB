@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class PharmacyService implements IDBService<PharmacyModel> {
+public class PharmacyService implements IDBService<PharmacyModel, Long> {
 
     @Autowired
     private PharmacyRepository pharmacyRepository;
@@ -20,8 +20,8 @@ public class PharmacyService implements IDBService<PharmacyModel> {
     }
 
     @Override
-    public void deleteByID(long ID) {
-        pharmacyRepository.deleteById(ID);
+    public void deleteByID(Long id) {
+        pharmacyRepository.deleteById(id);
     }
 
     @Override
@@ -30,8 +30,8 @@ public class PharmacyService implements IDBService<PharmacyModel> {
     }
 
     @Override
-    public PharmacyModel getByID(long ID) {
-        return pharmacyRepository.getById(ID);
+    public PharmacyModel getByID(Long id) {
+        return pharmacyRepository.getById(id);
     }
 
     @Override

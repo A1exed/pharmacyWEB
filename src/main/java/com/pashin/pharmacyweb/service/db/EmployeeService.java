@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class EmployeeService implements IDBService<EmployeeModel> {
+public class EmployeeService implements IDBService<EmployeeModel, Long> {
 
     @Autowired
     private EmployeeRepository employeeRepository;
@@ -20,8 +20,8 @@ public class EmployeeService implements IDBService<EmployeeModel> {
     }
 
     @Override
-    public void deleteByID(long ID) {
-        employeeRepository.deleteById(ID);
+    public void deleteByID(Long id) {
+        employeeRepository.deleteById(id);
     }
 
     @Override
@@ -30,8 +30,8 @@ public class EmployeeService implements IDBService<EmployeeModel> {
     }
 
     @Override
-    public EmployeeModel getByID(long ID) {
-        return employeeRepository.getById(ID);
+    public EmployeeModel getByID(Long id) {
+        return employeeRepository.getById(id);
     }
 
     @Override
