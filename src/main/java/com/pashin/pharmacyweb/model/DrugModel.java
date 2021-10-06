@@ -3,8 +3,6 @@ package com.pashin.pharmacyweb.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @SequenceGenerator(name = "drug_id_seq", sequenceName = "drug_drug_id_seq", allocationSize = 1)
 @Entity
@@ -35,14 +33,6 @@ public class DrugModel implements Serializable {
         this.drugName = drugName;
         this.form = form;
         this.manufacturerName = manufacturerName;
-    }
-
-    public DrugModel(String drugName, String form, String manufacturerName, DrugInPharmacyModel...drugInPharmacy) {
-        this.drugName = drugName;
-        this.form = form;
-        this.manufacturerName = manufacturerName;
-        this.drugInPharmacyList = Stream.of(drugInPharmacy).collect(Collectors.toList());
-        this.drugInPharmacyList.forEach(x -> x.setDrugID(this));
     }
 
     public Long getDrugID() {

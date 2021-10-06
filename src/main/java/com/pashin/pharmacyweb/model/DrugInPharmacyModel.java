@@ -64,7 +64,7 @@ public class DrugInPharmacyModel implements Serializable {
                 '}';
     }
 
-    public class DrugInPharmacyKey implements Serializable {
+    public static class DrugInPharmacyKey implements Serializable {
 
         private Long pharmacyID;
 

@@ -36,12 +36,6 @@ public class PharmacyModel implements Serializable {
     public PharmacyModel() {
     }
 
-    public PharmacyModel(String address, Double rating, String phoneNumber) {
-        this.address = address;
-        this.rating = rating;
-        this.phoneNumber = phoneNumber;
-    }
-
     public PharmacyModel(String address, Double rating, String phoneNumber, NetworkModel networkID) {
         this.address = address;
         this.rating = rating;

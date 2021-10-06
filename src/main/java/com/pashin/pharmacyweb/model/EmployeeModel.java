@@ -29,12 +29,6 @@ public class EmployeeModel implements Serializable {
     public EmployeeModel() {
     }
 
-    public EmployeeModel(String employeeName, String position, String phoneNumber) {
-        this.employeeName = employeeName;
-        this.position = position;
-        this.phoneNumber = phoneNumber;
-    }
-
     public EmployeeModel(String employeeName, String position, String phoneNumber, PharmacyModel pharmacyID) {
         this.employeeName = employeeName;
         this.position = position;

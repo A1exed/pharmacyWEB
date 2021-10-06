@@ -3,8 +3,6 @@ package com.pashin.pharmacyweb.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @SequenceGenerator(name = "network_id_seq", sequenceName = "network_network_id_seq", allocationSize = 1)
 @Entity
@@ -35,14 +33,6 @@ public class NetworkModel implements Serializable {
         this.networkName = networkName;
         this.phoneNumber = phoneNumber;
         this.owner = owner;
-    }
-
-    public NetworkModel(String networkName, String phoneNumber, String owner, PharmacyModel...pharmacies) {
-        this.networkName = networkName;
-        this.phoneNumber = phoneNumber;
-        this.owner = owner;
-        this.pharmacyList = Stream.of(pharmacies).collect(Collectors.toList());
-        this.pharmacyList.forEach(x -> x.setNetworkID(this));
     }
 
     public Long getNetworkID() {
