@@ -36,7 +36,7 @@ public class DBController {
         return dbService.addDrugInPharmacy(pharmacyID, drugID, quantity);
     }
 
-    @PostMapping("/deleteDrugInPharmacyByID")
+    @GetMapping("/deleteDrugInPharmacyByID")
     @ResponseStatus(HttpStatus.OK)
     public void deleteDrugInPharmacyByID(@RequestParam Long pharmacyID, @RequestParam Long drugID) {
         dbService.deleteDrugInPharmacyByID(pharmacyID, drugID);
@@ -70,7 +70,7 @@ public class DBController {
         return dbService.addDrug(drugName, form, manufacturerName);
     }
 
-    @PostMapping("/deleteDrugByID")
+    @GetMapping("/deleteDrugByID")
     @ResponseStatus(HttpStatus.OK)
     public void deleteDrugByID(@RequestParam Long drugID) {
         dbService.deleteDrugByID(drugID);
@@ -104,7 +104,7 @@ public class DBController {
         return dbService.addEmployee(employeeName, position, phoneNumber, pharmacyID);
     }
 
-    @PostMapping("/deleteEmployeeByID")
+    @GetMapping("/deleteEmployeeByID")
     @ResponseStatus(HttpStatus.OK)
     public void deleteEmployeeByID(@RequestParam Long employeeID) {
         dbService.deleteEmployeeByID(employeeID);
@@ -138,7 +138,7 @@ public class DBController {
         return dbService.addNetwork(networkName, phoneNumber, owner);
     }
 
-    @PostMapping("/deleteNetworkByID")
+    @GetMapping("/deleteNetworkByID")
     @ResponseStatus(HttpStatus.OK)
     public void deleteNetworkByID(@RequestParam Long networkID) {
         dbService.deleteNetworkByID(networkID);
@@ -172,7 +172,7 @@ public class DBController {
         return dbService.addPharmacy(address, rating, phoneNumber, networkID);
     }
 
-    @PostMapping("/deletePharmacyByID")
+    @GetMapping("/deletePharmacyByID")
     @ResponseStatus(HttpStatus.OK)
     public void deletePharmacyByID(@RequestParam Long pharmacyID) {
         dbService.deletePharmacyByID(pharmacyID);
