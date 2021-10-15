@@ -1,1 +1,40 @@
-<p>employee works!</p>
+<div class="tab-pane fade show active" id="nav-books" role="tabpanel" aria-labelledby="nav-books-tab">
+  <table class="table table-hover">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">Аптека</th>
+      <th scope="col">ФИО сотрудника</th>
+      <th scope="col">Должность</th>
+      <th scope="col">Номер телефона</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let employee of employees">
+      <td>
+        <select name="pharmacy" class="form-control" [(ngModel)]="employee.pharmacy">
+          <option *ngFor="let pharmacy of pharmacies" [ngValue]="pharmacy">{{pharmacy.network.networkName}}: {{pharmacy.address}}</option>
+        </select>
+      </td>
+      <td><input type="text" name="employeeName" class="form-control" placeholder="ФИО сотрудника" [(ngModel)]="employee.employeeName"/></td>
+      <td><input type="text" name="position" class="form-control" placeholder="Должность" [(ngModel)]="employee.position"/></td>
+      <td><input type="tel" name="phoneNumber" class="form-control" placeholder="Номер телефона" [(ngModel)]="employee.phoneNumber"/></td>
+      <td>
+        <button class="btn btn-warning" (click)="edit(employee)">Изменить</button>
+        <button class="btn btn-danger" (click)="delete(employee)">Удалить</button>
+      </td>
+    </tr>
+    <tr class="table-success">
+      <td>
+        <select name="pharmacy" class="form-control" [(ngModel)]="employee.pharmacy">
+          <option *ngFor="let pharmacy of pharmacies" [ngValue]="pharmacy">{{pharmacy.network.networkName}}: {{pharmacy.address}}</option>
+        </select>
+      </td>
+      <td><input type="text" name="employeeName" class="form-control" placeholder="ФИО сотрудника" [(ngModel)]="employee.employeeName"/></td>
+      <td><input type="text" name="position" class="form-control" placeholder="Должность" [(ngModel)]="employee.position"/></td>
+      <td><input type="tel" name="phoneNumber" class="form-control" placeholder="Номер телефона" [(ngModel)]="employee.phoneNumber"/></td>
+      <td><button class="btn btn-success" (click)="add(employee)">Добавить</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

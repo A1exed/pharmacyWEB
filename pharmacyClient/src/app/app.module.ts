@@ -22,7 +22,7 @@ const appRoutes: Routes = [
   { path: 'main/pharmacies', component: PharmacyComponent},
   { path: 'main/employees', component: EmployeeComponent },
   { path: 'main/drugs_in_pharmacies', component: DrugInPharmacyComponent },
-  { path: 'main/drugs', component: NetworkComponent },
+  { path: 'main/drugs', component: DrugComponent },
   { path: '**', component: NotFoundComponent }
 ];
 

@@ -1,1 +1,45 @@
-<p>drug-in-pharmacy works!</p>
+<div class="tab-pane fade show active" id="nav-books" role="tabpanel" aria-labelledby="nav-books-tab">
+  <table class="table table-hover">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">Аптека</th>
+      <th scope="col">Медикамент</th>
+      <th scope="col">Наличие, шт.</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let drugInPharmacy of drugsInPharmacies">
+      <td>
+        <select name="pharmacy" class="form-control" [(ngModel)]="drugInPharmacy.pharmacy">
+          <option *ngFor="let pharmacy of pharmacies" [ngValue]="pharmacy">{{pharmacy.network.networkName}}: {{pharmacy.address}}</option>
+        </select>
+      </td>
+      <td>
+        <select name="drug" class="form-control" [(ngModel)]="drugInPharmacy.drug">
+          <option *ngFor="let drug of drugs" [ngValue]="drug">{{drug.drugName}} ({{drug.form}}): {{drug.manufacturerName}}</option>
+        </select>
+      </td>
+      <td><input type="number" name="quantity" class="form-control" placeholder="Наличие, шт." min="0" step="1" pattern="/^\d+$/" [(ngModel)]="drugInPharmacy.quantity"/></td>
+      <td>
+        <button class="btn btn-warning" (click)="edit(drugInPharmacy)">Изменить</button>
+        <button class="btn btn-danger" (click)="delete(drugInPharmacy)">Удалить</button>
+      </td>
+    </tr>
+    <tr class="table-success">
+      <td>
+        <select name="pharmacy" class="form-control" [(ngModel)]="drugInPharmacy.pharmacy">
+          <option *ngFor="let pharmacy of pharmacies" [ngValue]="pharmacy">{{pharmacy.network.networkName}}: {{pharmacy.address}}</option>
+        </select>
+      </td>
+      <td>
+        <select name="drug" class="form-control" [(ngModel)]="drugInPharmacy.drug">
+          <option *ngFor="let drug of drugs" [ngValue]="drug">{{drug.drugName}} ({{drug.form}}): {{drug.manufacturerName}}</option>
+        </select>
+      </td>
+      <td><input type="number" name="quantity" class="form-control" placeholder="Наличие, шт." min="0" step="1" pattern="/^\d+$/" [(ngModel)]="drugInPharmacy.quantity"/></td>
+      <td><button class="btn btn-success" (click)="add(drugInPharmacy)">Добавить</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
