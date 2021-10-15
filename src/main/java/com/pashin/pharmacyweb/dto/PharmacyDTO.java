@@ -12,20 +12,17 @@ public class PharmacyDTO implements Serializable {
 
     private String phoneNumber;
 
-    private Long networkID;
-
-    private String networkName;
+    private NetworkDTO network;
 
     public PharmacyDTO() {
     }
 
-    public PharmacyDTO(Long pharmacyID, String address, Double rating, String phoneNumber, Long networkID, String networkName) {
+    public PharmacyDTO(Long pharmacyID, String address, Double rating, String phoneNumber, NetworkDTO network) {
         this.pharmacyID = pharmacyID;
         this.address = address;
         this.rating = rating;
         this.phoneNumber = phoneNumber;
-        this.networkID = networkID;
-        this.networkName = networkName;
+        this.network = network;
     }
 
     public Long getPharmacyID() {
@@ -60,20 +57,12 @@ public class PharmacyDTO implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public Long getNetworkID() {
-        return networkID;
+    public NetworkDTO getNetwork() {
+        return network;
     }
 
-    public void setNetworkID(Long networkID) {
-        this.networkID = networkID;
-    }
-
-    public String getNetworkName() {
-        return networkName;
-    }
-
-    public void setNetworkName(String networkName) {
-        this.networkName = networkName;
+    public void setNetwork(NetworkDTO network) {
+        this.network = network;
     }
 
     @Override
@@ -83,8 +72,7 @@ public class PharmacyDTO implements Serializable {
                 ", address='" + address + '\'' +
                 ", rating=" + rating +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", networkID=" + networkID +
-                ", networkName='" + networkName + '\'' +
+                ", network=" + network +
                 '}';
     }
 }

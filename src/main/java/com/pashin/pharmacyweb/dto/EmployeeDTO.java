@@ -12,23 +12,17 @@ public class EmployeeDTO implements Serializable {
 
     private String phoneNumber;
 
-    private Long pharmacyID;
-
-    private String networkName;
-
-    private String pharmacyAddress;
+    private PharmacyDTO pharmacy;
 
     public EmployeeDTO() {
     }
 
-    public EmployeeDTO(Long employeeID, String employeeName, String position, String phoneNumber, Long pharmacyID, String networkName, String pharmacyAddress) {
+    public EmployeeDTO(Long employeeID, String employeeName, String position, String phoneNumber, PharmacyDTO pharmacy) {
         this.employeeID = employeeID;
         this.employeeName = employeeName;
         this.position = position;
         this.phoneNumber = phoneNumber;
-        this.pharmacyID = pharmacyID;
-        this.networkName = networkName;
-        this.pharmacyAddress = pharmacyAddress;
+        this.pharmacy = pharmacy;
     }
 
     public Long getEmployeeID() {
@@ -63,28 +57,12 @@ public class EmployeeDTO implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public Long getPharmacyID() {
-        return pharmacyID;
+    public PharmacyDTO getPharmacy() {
+        return pharmacy;
     }
 
-    public void setPharmacyID(Long pharmacyID) {
-        this.pharmacyID = pharmacyID;
-    }
-
-    public String getNetworkName() {
-        return networkName;
-    }
-
-    public void setNetworkName(String networkName) {
-        this.networkName = networkName;
-    }
-
-    public String getPharmacyAddress() {
-        return pharmacyAddress;
-    }
-
-    public void setPharmacyAddress(String pharmacyAddress) {
-        this.pharmacyAddress = pharmacyAddress;
+    public void setPharmacy(PharmacyDTO pharmacy) {
+        this.pharmacy = pharmacy;
     }
 
     @Override
@@ -94,9 +72,7 @@ public class EmployeeDTO implements Serializable {
                 ", employeeName='" + employeeName + '\'' +
                 ", position='" + position + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", pharmacyID=" + pharmacyID +
-                ", networkName='" + networkName + '\'' +
-                ", pharmacyAddress='" + pharmacyAddress + '\'' +
+                ", pharmacy=" + pharmacy +
                 '}';
     }
 }

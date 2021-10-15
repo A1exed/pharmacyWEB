@@ -32,7 +32,7 @@ public class DBService {
         PharmacyModel pharmacyModel = model.getPharmacyID();
         NetworkModel networkModel = pharmacyModel.getNetworkID();
         DrugModel drugModel = model.getDrugID();
-        return new DrugInPharmacyDTO(pharmacyModel.getPharmacyID(), drugModel.getDrugID(), networkModel.getNetworkName(), pharmacyModel.getAddress(), drugModel.getDrugName(), drugModel.getForm(), drugModel.getManufacturerName(), model.getQuantity());
+        return new DrugInPharmacyDTO(new PharmacyDTO(pharmacyModel.getPharmacyID(), pharmacyModel.getAddress(), pharmacyModel.getRating(), pharmacyModel.getPhoneNumber(), new NetworkDTO(networkModel.getNetworkID(), networkModel.getNetworkName(), networkModel.getPhoneNumber(), networkModel.getOwner())), new DrugDTO(drugModel.getDrugID(), drugModel.getDrugName(), drugModel.getForm(), drugModel.getManufacturerName()), model.getQuantity());
     }
 
     public List<DrugInPharmacyDTO> getDrugInPharmacyList() {
@@ -45,7 +45,7 @@ public class DBService {
             pharmacyModel = model.getPharmacyID();
             networkModel = pharmacyModel.getNetworkID();
             drugModel = model.getDrugID();
-            results.add(new DrugInPharmacyDTO(pharmacyModel.getPharmacyID(), drugModel.getDrugID(), networkModel.getNetworkName(), pharmacyModel.getAddress(), drugModel.getDrugName(), drugModel.getForm(), drugModel.getManufacturerName(), model.getQuantity()));
+            results.add(new DrugInPharmacyDTO(new PharmacyDTO(pharmacyModel.getPharmacyID(), pharmacyModel.getAddress(), pharmacyModel.getRating(), pharmacyModel.getPhoneNumber(), new NetworkDTO(networkModel.getNetworkID(), networkModel.getNetworkName(), networkModel.getPhoneNumber(), networkModel.getOwner())), new DrugDTO(drugModel.getDrugID(), drugModel.getDrugName(), drugModel.getForm(), drugModel.getManufacturerName()), model.getQuantity()));
         }
         return results;
     }
@@ -55,7 +55,7 @@ public class DBService {
         PharmacyModel pharmacyModel = model.getPharmacyID();
         NetworkModel networkModel = pharmacyModel.getNetworkID();
         DrugModel drugModel = model.getDrugID();
-        return new DrugInPharmacyDTO(pharmacyModel.getPharmacyID(), drugModel.getDrugID(), networkModel.getNetworkName(), pharmacyModel.getAddress(), drugModel.getDrugName(), drugModel.getForm(), drugModel.getManufacturerName(), model.getQuantity());
+        return new DrugInPharmacyDTO(new PharmacyDTO(pharmacyModel.getPharmacyID(), pharmacyModel.getAddress(), pharmacyModel.getRating(), pharmacyModel.getPhoneNumber(), new NetworkDTO(networkModel.getNetworkID(), networkModel.getNetworkName(), networkModel.getPhoneNumber(), networkModel.getOwner())), new DrugDTO(drugModel.getDrugID(), drugModel.getDrugName(), drugModel.getForm(), drugModel.getManufacturerName()), model.getQuantity());
     }
 
     public void deleteDrugInPharmacyByID(Long pharmacyID, Long drugID) {
@@ -69,7 +69,7 @@ public class DBService {
         PharmacyModel pharmacyModel = model.getPharmacyID();
         NetworkModel networkModel = pharmacyModel.getNetworkID();
         DrugModel drugModel = model.getDrugID();
-        return new DrugInPharmacyDTO(pharmacyModel.getPharmacyID(), drugModel.getDrugID(), networkModel.getNetworkName(), pharmacyModel.getAddress(), drugModel.getDrugName(), drugModel.getForm(), drugModel.getManufacturerName(), model.getQuantity());
+        return new DrugInPharmacyDTO(new PharmacyDTO(pharmacyModel.getPharmacyID(), pharmacyModel.getAddress(), pharmacyModel.getRating(), pharmacyModel.getPhoneNumber(), new NetworkDTO(networkModel.getNetworkID(), networkModel.getNetworkName(), networkModel.getPhoneNumber(), networkModel.getOwner())), new DrugDTO(drugModel.getDrugID(), drugModel.getDrugName(), drugModel.getForm(), drugModel.getManufacturerName()), model.getQuantity());
     }
 
     public DrugDTO getDrugByID(Long drugID) {
@@ -108,7 +108,7 @@ public class DBService {
         EmployeeModel model = employeeService.getByID(employeeID);
         PharmacyModel pharmacyModel = model.getPharmacyID();
         NetworkModel networkModel = pharmacyModel.getNetworkID();
-        return new EmployeeDTO(model.getEmployeeID(), model.getEmployeeName(), model.getPosition(), model.getPhoneNumber(), pharmacyModel.getPharmacyID(), networkModel.getNetworkName(), pharmacyModel.getAddress());
+        return new EmployeeDTO(model.getEmployeeID(), model.getEmployeeName(), model.getPosition(), model.getPhoneNumber(), new PharmacyDTO(pharmacyModel.getPharmacyID(), pharmacyModel.getAddress(), pharmacyModel.getRating(), pharmacyModel.getPhoneNumber(), new NetworkDTO(networkModel.getNetworkID(), networkModel.getNetworkName(), networkModel.getPhoneNumber(), networkModel.getOwner())));
     }
 
     public List<EmployeeDTO> getEmployeeList() {
@@ -119,7 +119,7 @@ public class DBService {
         for (EmployeeModel model : models) {
             pharmacyModel = model.getPharmacyID();
             networkModel = pharmacyModel.getNetworkID();
-            results.add(new EmployeeDTO(model.getEmployeeID(), model.getEmployeeName(), model.getPosition(), model.getPhoneNumber(), pharmacyModel.getPharmacyID(), networkModel.getNetworkName(), pharmacyModel.getAddress()));
+            results.add(new EmployeeDTO(model.getEmployeeID(), model.getEmployeeName(), model.getPosition(), model.getPhoneNumber(), new PharmacyDTO(pharmacyModel.getPharmacyID(), pharmacyModel.getAddress(), pharmacyModel.getRating(), pharmacyModel.getPhoneNumber(), new NetworkDTO(networkModel.getNetworkID(), networkModel.getNetworkName(), networkModel.getPhoneNumber(), networkModel.getOwner()))));
         }
         return results;
     }
@@ -129,7 +129,7 @@ public class DBService {
         EmployeeModel model = employeeService.add(new EmployeeModel(employeeName, position, phoneNumber, pharmacyModel));
         pharmacyModel = model.getPharmacyID();
         NetworkModel networkModel = pharmacyModel.getNetworkID();
-        return new EmployeeDTO(model.getEmployeeID(), model.getEmployeeName(), model.getPosition(), model.getPhoneNumber(), pharmacyModel.getPharmacyID(), networkModel.getNetworkName(), pharmacyModel.getAddress());
+        return new EmployeeDTO(model.getEmployeeID(), model.getEmployeeName(), model.getPosition(), model.getPhoneNumber(), new PharmacyDTO(pharmacyModel.getPharmacyID(), pharmacyModel.getAddress(), pharmacyModel.getRating(), pharmacyModel.getPhoneNumber(), new NetworkDTO(networkModel.getNetworkID(), networkModel.getNetworkName(), networkModel.getPhoneNumber(), networkModel.getOwner())));
     }
 
     public void deleteEmployeeByID(Long employeeID) {
@@ -145,7 +145,7 @@ public class DBService {
         model = employeeService.editElement(model);
         PharmacyModel pharmacyModel = model.getPharmacyID();
         NetworkModel networkModel = pharmacyModel.getNetworkID();
-        return new EmployeeDTO(model.getEmployeeID(), model.getEmployeeName(), model.getPosition(), model.getPhoneNumber(), pharmacyModel.getPharmacyID(), networkModel.getNetworkName(), pharmacyModel.getAddress());
+        return new EmployeeDTO(model.getEmployeeID(), model.getEmployeeName(), model.getPosition(), model.getPhoneNumber(), new PharmacyDTO(pharmacyModel.getPharmacyID(), pharmacyModel.getAddress(), pharmacyModel.getRating(), pharmacyModel.getPhoneNumber(), new NetworkDTO(networkModel.getNetworkID(), networkModel.getNetworkName(), networkModel.getPhoneNumber(), networkModel.getOwner())));
     }
 
     public NetworkDTO getNetworkByID(Long networkID) {
@@ -183,7 +183,7 @@ public class DBService {
     public PharmacyDTO getPharmacyByID(Long pharmacyID) {
         PharmacyModel model = pharmacyService.getByID(pharmacyID);
         NetworkModel networkModel = model.getNetworkID();
-        return new PharmacyDTO(model.getPharmacyID(), model.getAddress(), model.getRating(), model.getPhoneNumber(), networkModel.getNetworkID(), networkModel.getNetworkName());
+        return new PharmacyDTO(model.getPharmacyID(), model.getAddress(), model.getRating(), model.getPhoneNumber(), new NetworkDTO(networkModel.getNetworkID(), networkModel.getNetworkName(), networkModel.getPhoneNumber(), networkModel.getOwner()));
     }
 
     public List<PharmacyDTO> getPharmacyList() {
@@ -192,7 +192,7 @@ public class DBService {
         NetworkModel networkModel;
         for (PharmacyModel model : models) {
             networkModel = model.getNetworkID();
-            results.add(new PharmacyDTO(model.getPharmacyID(), model.getAddress(), model.getRating(), model.getPhoneNumber(), networkModel.getNetworkID(), networkModel.getNetworkName()));
+            results.add(new PharmacyDTO(model.getPharmacyID(), model.getAddress(), model.getRating(), model.getPhoneNumber(), new NetworkDTO(networkModel.getNetworkID(), networkModel.getNetworkName(), networkModel.getPhoneNumber(), networkModel.getOwner())));
         }
         return results;
     }
@@ -201,7 +201,7 @@ public class DBService {
         NetworkModel networkModel = networkService.getByID(networkID);
         PharmacyModel model = pharmacyService.add(new PharmacyModel(address, rating, phoneNumber, networkModel));
         networkModel = model.getNetworkID();
-        return new PharmacyDTO(model.getPharmacyID(), model.getAddress(), model.getRating(), model.getPhoneNumber(), networkModel.getNetworkID(), networkModel.getNetworkName());
+        return new PharmacyDTO(model.getPharmacyID(), model.getAddress(), model.getRating(), model.getPhoneNumber(), new NetworkDTO(networkModel.getNetworkID(), networkModel.getNetworkName(), networkModel.getPhoneNumber(), networkModel.getOwner()));
     }
 
     public void deletePharmacyByID(Long pharmacyID) {
@@ -216,6 +216,6 @@ public class DBService {
         model.setNetworkID(networkService.getByID(networkID));
         model = pharmacyService.editElement(model);
         NetworkModel networkModel = model.getNetworkID();
-        return new PharmacyDTO(model.getPharmacyID(), model.getAddress(), model.getRating(), model.getPhoneNumber(), networkModel.getNetworkID(), networkModel.getNetworkName());
+        return new PharmacyDTO(model.getPharmacyID(), model.getAddress(), model.getRating(), model.getPhoneNumber(), new NetworkDTO(networkModel.getNetworkID(), networkModel.getNetworkName(), networkModel.getPhoneNumber(), networkModel.getOwner()));
     }
 }
