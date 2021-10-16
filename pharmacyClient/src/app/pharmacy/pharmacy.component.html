@@ -13,11 +13,11 @@
       <tr *ngFor="let pharmacy of pharmacies">
         <td>
           <select name="network" class="form-control" [(ngModel)]="pharmacy.network">
-            <option *ngFor="let network of networks" [ngValue]="network">{{network.networkName}}</option>
+            <option *ngFor="let network of networks" [ngValue]="network" [selected]="network.networkID === pharmacy.network.networkID">{{network.networkName}}</option>
           </select>
         </td>
         <td><input type="text" name="address" class="form-control" placeholder="Адрес" [(ngModel)]="pharmacy.address"/></td>
-        <td><input type="number" name="rating" class="form-control" placeholder="Рейтинг 0-5" min="0" max="5" step="0.1" [(ngModel)]="pharmacy.rating"/></td>
+        <td><input type="number" name="rating" class="form-control" placeholder="Рейтинг 0-5" min="0" max="5" step="0.1" pattern="^[0-5]*[.,]?[0-9]+$" [(ngModel)]="pharmacy.rating"/></td>
         <td><input type="tel" name="phoneNumber" class="form-control" placeholder="Номер телефона" [(ngModel)]="pharmacy.phoneNumber"/></td>
         <td>
           <button class="btn btn-warning" (click)="edit(pharmacy)">Изменить</button>

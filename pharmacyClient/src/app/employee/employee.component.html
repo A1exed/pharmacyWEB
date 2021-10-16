@@ -13,7 +13,7 @@
     <tr *ngFor="let employee of employees">
       <td>
         <select name="pharmacy" class="form-control" [(ngModel)]="employee.pharmacy">
-          <option *ngFor="let pharmacy of pharmacies" [ngValue]="pharmacy">{{pharmacy.network.networkName}}: {{pharmacy.address}}</option>
+          <option *ngFor="let pharmacy of pharmacies" [ngValue]="pharmacy" [selected]="pharmacy.pharmacyID === employee.pharmacy.pharmacyID">{{pharmacy.network.networkName}}: {{pharmacy.address}}</option>
         </select>
       </td>
       <td><input type="text" name="employeeName" class="form-control" placeholder="ФИО сотрудника" [(ngModel)]="employee.employeeName"/></td>
