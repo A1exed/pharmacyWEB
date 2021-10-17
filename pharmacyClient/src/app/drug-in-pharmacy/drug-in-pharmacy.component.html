@@ -11,13 +11,13 @@
     <tbody>
     <tr *ngFor="let drugInPharmacy of drugsInPharmacies">
       <td>
-        <select name="pharmacy" class="form-control" [(ngModel)]="drugInPharmacy.pharmacy">
-          <option *ngFor="let pharmacy of pharmacies" [ngValue]="pharmacy" [selected]="pharmacy.pharmacyID === drugInPharmacy.pharmacy.pharmacyID">{{pharmacy.network.networkName}}: {{pharmacy.address}}</option>
+        <select name="pharmacy" class="form-control" [(ngModel)]="drugInPharmacy.pharmacy.pharmacyID">
+          <option *ngFor="let pharmacy of pharmacies" [ngValue]="pharmacy.pharmacyID">{{pharmacy.network.networkName}}: {{pharmacy.address}}</option>
         </select>
       </td>
       <td>
-        <select name="drug" class="form-control" [(ngModel)]="drugInPharmacy.drug">
-          <option *ngFor="let drug of drugs" [ngValue]="drug" [selected]="drug.drugID === drugInPharmacy.drug.drugID">{{drug.drugName}} ({{drug.form}}): {{drug.manufacturerName}}</option>
+        <select name="drug" class="form-control" [(ngModel)]="drugInPharmacy.drug.drugID">
+          <option *ngFor="let drug of drugs" [ngValue]="drug.drugID">{{drug.drugName}} ({{drug.form}}): {{drug.manufacturerName}}</option>
         </select>
       </td>
       <td><input type="number" name="quantity" class="form-control" placeholder="Наличие, шт." min="0" step="1" pattern="/^\d+$/" [(ngModel)]="drugInPharmacy.quantity"/></td>
@@ -28,13 +28,13 @@
     </tr>
     <tr class="table-success">
       <td>
-        <select name="pharmacy" class="form-control" [(ngModel)]="drugInPharmacy.pharmacy">
-          <option *ngFor="let pharmacy of pharmacies" [ngValue]="pharmacy">{{pharmacy.network.networkName}}: {{pharmacy.address}}</option>
+        <select name="pharmacy" class="form-control" [(ngModel)]="drugInPharmacy.pharmacy.pharmacyID">
+          <option *ngFor="let pharmacy of pharmacies" [ngValue]="pharmacy.pharmacyID">{{pharmacy.network.networkName}}: {{pharmacy.address}}</option>
         </select>
       </td>
       <td>
-        <select name="drug" class="form-control" [(ngModel)]="drugInPharmacy.drug">
-          <option *ngFor="let drug of drugs" [ngValue]="drug">{{drug.drugName}} ({{drug.form}}): {{drug.manufacturerName}}</option>
+        <select name="drug" class="form-control" [(ngModel)]="drugInPharmacy.drug.drugID">
+          <option *ngFor="let drug of drugs" [ngValue]="drug.drugID">{{drug.drugName}} ({{drug.form}}): {{drug.manufacturerName}}</option>
         </select>
       </td>
       <td><input type="number" name="quantity" class="form-control" placeholder="Наличие, шт." min="0" step="1" pattern="/^\d+$/" [(ngModel)]="drugInPharmacy.quantity"/></td>
