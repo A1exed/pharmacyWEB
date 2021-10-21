@@ -185,4 +185,11 @@ public class DBController {
         return dbService.editPharmacy(pharmacyID, address, rating, phoneNumber, networkID);
     }
 
+    @GetMapping("/login")
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public void login() {
+
+    }
+
 }
