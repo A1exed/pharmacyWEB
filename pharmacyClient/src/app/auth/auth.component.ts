@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AppService} from "../app.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-auth',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthComponent implements OnInit {
 
-  constructor() { }
+  constructor(public app: AppService, public router: Router) {
+    if (app.authenticated) {
+      router.navigateByUrl('main');
+    }
+  }
 
   ngOnInit(): void {
   }

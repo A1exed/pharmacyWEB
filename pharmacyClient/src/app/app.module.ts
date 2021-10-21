@@ -14,6 +14,8 @@ import { EmployeeComponent } from './employee/employee.component';
 import { DrugInPharmacyComponent } from './drug-in-pharmacy/drug-in-pharmacy.component';
 import { DrugComponent } from './drug/drug.component';
 
+import { AppService } from "./app.service";
+
 
 const appRoutes: Routes = [
   { path: '', component: AuthComponent },
@@ -44,7 +46,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FormsModule
   ],
-  providers: [],
+  providers: [AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

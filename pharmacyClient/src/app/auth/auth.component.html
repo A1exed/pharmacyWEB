@@ -1,1 +1,8 @@
-<p>auth works!</p>
+<div class="d-grid gap-2 col-2 mx-auto">
+  <form role="form" (submit)="app.login()">
+    <p class="h3">Вход</p>
+    <p><input type="text" class="form-control" name="username" id="username" placeholder="Имя пользователя" required [(ngModel)]="app.user.username"/></p>
+    <p><input type="password" class="form-control" name="password" id="password" placeholder="Пароль" required [(ngModel)]="app.user.password"/></p>
+    <p style="text-align: center"><button type="submit" class="btn btn-primary btn-block">Войти</button></p>
+  </form>
+</div>
