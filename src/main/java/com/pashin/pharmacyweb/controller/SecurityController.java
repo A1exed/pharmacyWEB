@@ -23,7 +23,8 @@ public class SecurityController {
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.OK)
-    public void registerUser(@RequestBody UserDTO userDTO) throws DuplicateUserException {
+    public void registerUser(@RequestBody UserDTO userDTO) throws DuplicateUserException, InvalidUserException {
+        if (userDTO.getUsername().equals("") || userDTO.getPassword().equals("")) throw new InvalidUserException("Некорректное имя ползователя или пароль");
         if (userService.findByUsername(userDTO.getUsername()) == null) {
             userService.saveUser(new UserModel(userDTO.getUsername(), userDTO.getPassword(), userService.findByRoleName("ROLE_USER")));
         } else {

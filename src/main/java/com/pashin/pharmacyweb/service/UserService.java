@@ -32,6 +32,7 @@ public class UserService {
     }
 
     public UserModel findByUsernameAndPassword(String username, String password) {
+        if (username.equals("") || password.equals("")) return null;
         UserModel userModel = findByUsername(username);
         if (userModel != null) {
             if (passwordEncoder.matches(password, userModel.getPassword())) {
