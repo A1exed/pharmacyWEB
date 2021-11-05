@@ -1,6 +1,14 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" routerLink="" >
-    <img src="assets/logo.png" width="50" height="50" class="d-inline-block align-middle" alt="">
-    Pharmacy DB
-  </a>
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="" >
+      <img src="assets/logo.png" width="50" height="50" class="d-inline-block align-middle" alt="">
+      Pharmacy DB
+    </a>
+    <div class="d-flex">
+      <p class="lead" style="margin: 0 3vh" *ngIf="app.authenticated"><strong>{{app.user.username}}</strong></p>
+      <button class="btn btn-danger" (click)="app.logout()" *ngIf="app.authenticated">Выход</button>
+      <button class="btn btn-success" routerLink="" *ngIf="!app.authenticated">Вход</button>
+      <button class="btn btn-outline-success" routerLink="register" *ngIf="!app.authenticated">Регистрация</button>
+    </div>
+  </div>
 </nav>

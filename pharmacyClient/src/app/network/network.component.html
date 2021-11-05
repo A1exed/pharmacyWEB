@@ -5,20 +5,20 @@
       <th scope="col">Название аптечной сети</th>
       <th scope="col">Телефонный номер</th>
       <th scope="col">Владелец</th>
-      <th scope="col"></th>
+      <th scope="col" *ngIf="app.isAdmin"></th>
     </tr>
     </thead>
     <tbody>
       <tr *ngFor="let network of networks">
-        <td><input type="text" name="networkName" class="form-control" placeholder="Название сети" [(ngModel)]="network.networkName"/></td>
-        <td><input type="tel" name="phoneNumber" class="form-control" placeholder="Телефонный номер" [(ngModel)]="network.phoneNumber"/></td>
-        <td><input type="text" name="owner" class="form-control" placeholder="ФИО владельца" [(ngModel)]="network.owner"/></td>
-        <td>
+        <td><input type="text" name="networkName" class="form-control" placeholder="Название сети" [(ngModel)]="network.networkName" [disabled]="!app.isAdmin"/></td>
+        <td><input type="tel" name="phoneNumber" class="form-control" placeholder="Телефонный номер" [(ngModel)]="network.phoneNumber" [disabled]="!app.isAdmin"/></td>
+        <td><input type="text" name="owner" class="form-control" placeholder="ФИО владельца" [(ngModel)]="network.owner" [disabled]="!app.isAdmin"/></td>
+        <td *ngIf="app.isAdmin">
           <button class="btn btn-warning" (click)="edit(network)">Изменить</button>
           <button class="btn btn-danger" (click)="delete(network)">Удалить</button>
         </td>
       </tr>
-      <tr class="table-success">
+      <tr class="table-success" *ngIf="app.isAdmin">
         <td><input type="text" name="networkName" class="form-control" placeholder="Название сети" [(ngModel)]="network.networkName"/></td>
         <td><input type="tel" name="phoneNumber" class="form-control" placeholder="Телефонный номер" [(ngModel)]="network.phoneNumber"/></td>
         <td><input type="text" name="owner" class="form-control" placeholder="ФИО владельца" [(ngModel)]="network.owner"/></td>

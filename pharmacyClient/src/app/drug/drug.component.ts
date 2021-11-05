@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Drug} from "../model/drug";
+import {AppService} from "../app.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-drug',
@@ -12,49 +14,93 @@ export class DrugComponent implements OnInit {
 
   drug: Drug = new Drug(0, '', '', '');
 
-  constructor() {
-    this.getList();
+  constructor(public app: AppService, public router: Router) {
+    if (!app.authenticated) {
+      router.navigateByUrl('');
+    } else {
+      this.getList();
+    }
   }
 
   async getList() {
-    const response = await fetch('http://localhost:8080/getDrugList');
-    if (response.ok) {
-      this.drugs = await response.json();
-      console.log(this.drugs);
+    const response = await fetch(this.app.serverURL + this.app.role + '/getDrugList', {
+      method: 'GET',
+      headers: new Headers({
+        'Authorization': 'Bearer ' + this.app.user.token,
+        'Content-Type': 'application/json;charset=utf-8'
+      })
+    });
+    if (response.status === 401) {
+      await this.router.navigateByUrl('');
+    } else {
+      if (response.ok) {
+        this.drugs = await response.json();
+      } else {
+        alert('Сервис недоступен');
+      }
     }
   }
 
   async edit(drug: Drug): Promise<Drug> {
-    const response = await fetch('http://localhost:8080/editDrug?' + 'drugID=' + drug.drugID +
-      '&drugName=' + drug.drugName + '&form=' + drug.form + '&manufacturerName=' + drug.manufacturerName);
-    if (response.ok) {
-      let newDrug: Drug = await response.json();
-      console.log(newDrug);
-      return newDrug;
-    } else {
+    const response = await fetch(this.app.serverURL + this.app.role + '/editDrug?' + 'drugID=' + drug.drugID +
+        '&drugName=' + drug.drugName + '&form=' + drug.form + '&manufacturerName=' + drug.manufacturerName, {
+      method: 'GET',
+      headers: new Headers({
+        'Authorization': 'Bearer ' + this.app.user.token,
+        'Content-Type': 'application/json;charset=utf-8'
+      })
+    });
+    if (response.status === 401) {
+      await this.router.navigateByUrl('');
       return drug;
+    } else {
+      if (response.ok) {
+        return await response.json();
+      } else {
+        alert('Сервис недоступен');
+        return drug;
+      }
     }
   }
 
   async delete(drug: Drug) {
-    const response = await fetch('http://localhost:8080/deleteDrugByID?' + 'drugID=' + drug.drugID);
-    if (response.ok) {
-      this.drugs.splice(this.drugs.indexOf(drug), 1);
+    const response = await fetch(this.app.serverURL + this.app.role + '/deleteDrugByID?' + 'drugID=' + drug.drugID, {
+      method: 'GET',
+      headers: new Headers({
+        'Authorization': 'Bearer ' + this.app.user.token,
+        'Content-Type': 'application/json;charset=utf-8'
+      })
+    });
+    if (response.status === 401) {
+      await this.router.navigateByUrl('');
     } else {
-
+      if (response.ok) {
+        this.drugs.splice(this.drugs.indexOf(drug), 1);
+      } else {
+        alert('Сервис недоступен');
+      }
     }
   }
 
   async add(drug: Drug) {
-    const response = await fetch('http://localhost:8080/addDrug?' + 'drugName=' + drug.drugName +
-      '&form=' + drug.form + '&manufacturerName=' + drug.manufacturerName);
-    if (response.ok) {
-      this.drug = await response.json();
-      console.log(this.drug);
-      this.drugs.push(this.drug);
-      this.drug = new Drug(0, '', '', '');
+    const response = await fetch(this.app.serverURL + this.app.role + '/addDrug?' + 'drugName=' + drug.drugName +
+        '&form=' + drug.form + '&manufacturerName=' + drug.manufacturerName, {
+      method: 'GET',
+      headers: new Headers({
+        'Authorization': 'Bearer ' + this.app.user.token,
+        'Content-Type': 'application/json;charset=utf-8'
+      })
+    });
+    if (response.status === 401) {
+      await this.router.navigateByUrl('');
     } else {
-
+      if (response.ok) {
+        this.drug = await response.json();
+        this.drugs.push(this.drug);
+        this.drug = new Drug(0, '', '', '');
+      } else {
+        alert('Сервис недоступен');
+      }
     }
   }
 

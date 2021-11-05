@@ -6,25 +6,25 @@
       <th scope="col">ФИО сотрудника</th>
       <th scope="col">Должность</th>
       <th scope="col">Номер телефона</th>
-      <th scope="col"></th>
+      <th scope="col" *ngIf="app.isAdmin"></th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let employee of employees">
       <td>
-        <select name="pharmacy" class="form-control" [(ngModel)]="employee.pharmacy.pharmacyID">
+        <select name="pharmacy" class="form-control" [(ngModel)]="employee.pharmacy.pharmacyID" [disabled]="!app.isAdmin">
           <option *ngFor="let pharmacy of pharmacies" [ngValue]="pharmacy.pharmacyID">{{pharmacy.network.networkName}}: {{pharmacy.address}}</option>
         </select>
       </td>
-      <td><input type="text" name="employeeName" class="form-control" placeholder="ФИО сотрудника" [(ngModel)]="employee.employeeName"/></td>
-      <td><input type="text" name="position" class="form-control" placeholder="Должность" [(ngModel)]="employee.position"/></td>
-      <td><input type="tel" name="phoneNumber" class="form-control" placeholder="Номер телефона" [(ngModel)]="employee.phoneNumber"/></td>
-      <td>
+      <td><input type="text" name="employeeName" class="form-control" placeholder="ФИО сотрудника" [(ngModel)]="employee.employeeName" [disabled]="!app.isAdmin"/></td>
+      <td><input type="text" name="position" class="form-control" placeholder="Должность" [(ngModel)]="employee.position" [disabled]="!app.isAdmin"/></td>
+      <td><input type="tel" name="phoneNumber" class="form-control" placeholder="Номер телефона" [(ngModel)]="employee.phoneNumber" [disabled]="!app.isAdmin"/></td>
+      <td *ngIf="app.isAdmin">
         <button class="btn btn-warning" (click)="edit(employee)">Изменить</button>
         <button class="btn btn-danger" (click)="delete(employee)">Удалить</button>
       </td>
     </tr>
-    <tr class="table-success">
+    <tr class="table-success" *ngIf="app.isAdmin">
       <td>
         <select name="pharmacy" class="form-control" [(ngModel)]="employee.pharmacy.pharmacyID">
           <option *ngFor="let pharmacy of pharmacies" [ngValue]="pharmacy.pharmacyID">{{pharmacy.network.networkName}}: {{pharmacy.address}}</option>

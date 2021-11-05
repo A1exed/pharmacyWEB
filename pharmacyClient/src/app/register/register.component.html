@@ -1,9 +1,8 @@
 <div class="d-grid gap-2 col-2 mx-auto">
-  <form role="form" (submit)="app.login()">
-    <p class="h3">Вход</p>
+  <form role="form" (submit)="app.register()">
+    <p class="h3">Регистрация</p>
     <p><input type="text" class="form-control" name="username" id="username" placeholder="Имя пользователя" required [(ngModel)]="app.user.username"/></p>
     <p><input type="password" class="form-control" name="password" id="password" placeholder="Пароль" required [(ngModel)]="app.user.password"/></p>
-    <p style="text-align: center"><button type="submit" class="btn btn-primary col-6">Войти</button></p>
-    <p style="text-align: center"><button class="btn btn-outline-primary col-6" routerLink="register">Регистрация</button></p>
+    <p style="text-align: center"><button type="submit" class="btn btn-primary col-8">Зарегистрироваться</button></p>
   </form>
 </div>

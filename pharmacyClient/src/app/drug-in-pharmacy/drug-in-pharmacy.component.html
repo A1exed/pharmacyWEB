@@ -5,28 +5,28 @@
       <th scope="col">Аптека</th>
       <th scope="col">Медикамент</th>
       <th scope="col">Наличие, шт.</th>
-      <th scope="col"></th>
+      <th scope="col" *ngIf="app.isAdmin"></th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let drugInPharmacy of drugsInPharmacies">
       <td>
-        <select name="pharmacy" class="form-control" [(ngModel)]="drugInPharmacy.pharmacy.pharmacyID">
+        <select name="pharmacy" class="form-control" [(ngModel)]="drugInPharmacy.pharmacy.pharmacyID" [disabled]="!app.isAdmin">
           <option *ngFor="let pharmacy of pharmacies" [ngValue]="pharmacy.pharmacyID">{{pharmacy.network.networkName}}: {{pharmacy.address}}</option>
         </select>
       </td>
       <td>
-        <select name="drug" class="form-control" [(ngModel)]="drugInPharmacy.drug.drugID">
+        <select name="drug" class="form-control" [(ngModel)]="drugInPharmacy.drug.drugID" [disabled]="!app.isAdmin">
           <option *ngFor="let drug of drugs" [ngValue]="drug.drugID">{{drug.drugName}} ({{drug.form}}): {{drug.manufacturerName}}</option>
         </select>
       </td>
-      <td><input type="number" name="quantity" class="form-control" placeholder="Наличие, шт." min="0" step="1" pattern="/^\d+$/" [(ngModel)]="drugInPharmacy.quantity"/></td>
-      <td>
+      <td><input type="number" name="quantity" class="form-control" placeholder="Наличие, шт." min="0" step="1" pattern="/^\d+$/" [(ngModel)]="drugInPharmacy.quantity" [disabled]="!app.isAdmin"/></td>
+      <td *ngIf="app.isAdmin">
         <button class="btn btn-warning" (click)="edit(drugInPharmacy)">Изменить</button>
         <button class="btn btn-danger" (click)="delete(drugInPharmacy)">Удалить</button>
       </td>
     </tr>
-    <tr class="table-success">
+    <tr class="table-success" *ngIf="app.isAdmin">
       <td>
         <select name="pharmacy" class="form-control" [(ngModel)]="drugInPharmacy.pharmacy.pharmacyID">
           <option *ngFor="let pharmacy of pharmacies" [ngValue]="pharmacy.pharmacyID">{{pharmacy.network.networkName}}: {{pharmacy.address}}</option>

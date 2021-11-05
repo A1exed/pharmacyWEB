@@ -15,10 +15,12 @@ import { DrugInPharmacyComponent } from './drug-in-pharmacy/drug-in-pharmacy.com
 import { DrugComponent } from './drug/drug.component';
 
 import { AppService } from "./app.service";
+import { RegisterComponent } from './register/register.component';
 
 
 const appRoutes: Routes = [
   { path: '', component: AuthComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'main', component: MainComponent },
   { path: 'main/networks', component: NetworkComponent },
   { path: 'main/pharmacies', component: PharmacyComponent},
@@ -39,7 +41,8 @@ const appRoutes: Routes = [
     PharmacyComponent,
     EmployeeComponent,
     DrugInPharmacyComponent,
-    DrugComponent
+    DrugComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

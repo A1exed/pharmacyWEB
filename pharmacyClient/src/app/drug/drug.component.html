@@ -5,20 +5,20 @@
       <th scope="col">Наименование препарата</th>
       <th scope="col">Форма выпуска</th>
       <th scope="col">Производитель</th>
-      <th scope="col"></th>
+      <th scope="col" *ngIf="app.isAdmin"></th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let drug of drugs">
-      <td><input type="text" name="drugName" class="form-control" placeholder="Наименование препарата" [(ngModel)]="drug.drugName"/></td>
-      <td><input type="text" name="form" class="form-control" placeholder="Форма выпуска" [(ngModel)]="drug.form"/></td>
-      <td><input type="text" name="manufacturerName" class="form-control" placeholder="Производитель" [(ngModel)]="drug.manufacturerName"/></td>
-      <td>
+      <td><input type="text" name="drugName" class="form-control" placeholder="Наименование препарата" [(ngModel)]="drug.drugName" [disabled]="!app.isAdmin"/></td>
+      <td><input type="text" name="form" class="form-control" placeholder="Форма выпуска" [(ngModel)]="drug.form" [disabled]="!app.isAdmin"/></td>
+      <td><input type="text" name="manufacturerName" class="form-control" placeholder="Производитель" [(ngModel)]="drug.manufacturerName" [disabled]="!app.isAdmin"/></td>
+      <td *ngIf="app.isAdmin">
         <button class="btn btn-warning" (click)="edit(drug)">Изменить</button>
         <button class="btn btn-danger" (click)="delete(drug)">Удалить</button>
       </td>
     </tr>
-    <tr class="table-success">
+    <tr class="table-success" *ngIf="app.isAdmin">
       <td><input type="text" name="drugName" class="form-control" placeholder="Наименование препарата" [(ngModel)]="drug.drugName"/></td>
       <td><input type="text" name="form" class="form-control" placeholder="Форма выпуска" [(ngModel)]="drug.form"/></td>
       <td><input type="text" name="manufacturerName" class="form-control" placeholder="Производитель" [(ngModel)]="drug.manufacturerName"/></td>
